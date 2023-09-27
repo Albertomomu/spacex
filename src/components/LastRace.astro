@@ -17,9 +17,11 @@ const response = await fetch(url, options);
 const { title, raceResults } = (await response.json()) as RaceResults;
 ---
 
-<section class="flex flex-col justify-center items-center my-8 h-screen">
-  <h2 class="font-bold text-4xl">2023 RACES</h2>
-  <div class="grid grid-cols-3 gap-4">
+<section
+  class="flex flex-col justify-center items-center my-8 max-w-7xl mx-auto"
+>
+  <h2 class="font-bold text-5xl mb-6">2023 RACES</h2>
+  <div class="grid grid-cols-3 gap-4 mb-4 w-full">
     {
       raceResults.map((raceResulting: any) => (
         <CardRace title={title} raceResult={raceResulting} />
