@@ -1,0 +1,39 @@
+---
+import { type RaceResults, type RaceResult } from "../interfaces/RaceResults";
+import CardRace from "./CardRace.astro";
+
+const url =
+  "https://fia-formula-1-championship-statistics.p.rapidapi.com/api/standings/race-results?year=2023";
+const options = {
+  method: "GET",
+  headers: {
+    "X-RapidAPI-Key": "df163c1acdmsh067ecb6cddbce09p120c32jsn5325a2ac0db8",
+    "X-RapidAPI-Host": "fia-formula-1-championship-statistics.p.rapidapi.com",
+  },
+};
+
+const response = await fetch(url, options);
+
+const { title, raceResults } = (await response.json()) as RaceResults;
+---
+
+<section class="flex flex-col justify-center items-center my-8 h-screen">
+  <h2 class="font-bold text-4xl">2023 RACES</h2>
+  <div class="grid grid-cols-3 gap-4">
+    {
+      raceResults.map((raceResulting: any) => (
+        <CardRace title={title} raceResult={raceResulting} />
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .striped-table {
+    background-color: #282828;
+  }
+
+  .striped-table tr:nth-child(even) {
+    background-color: #4b4b4b;
+  }
+</style>

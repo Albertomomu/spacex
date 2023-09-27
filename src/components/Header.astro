@@ -5,7 +5,13 @@ import HeaderButton from "./HeaderButton.astro";
 <header class="py-8 px-4 mx-auto lg:py-16">
   <nav class="flex flex-row justify-between mx-auto max-w-7xl items-center">
     <div class="logo">
-      <img src="../../public/assets/f1_logo.webp" alt="F1 Logo" class="h-20" />
+      <a href="/"
+        ><img
+          src="../../public/assets/f1_logo.webp"
+          alt="F1 Logo"
+          class="h-20"
+        /></a
+      >
     </div>
     <div class="flex flex-row gap-6 h-10">
       <HeaderButton href=" ">
@@ -90,6 +96,28 @@ import HeaderButton from "./HeaderButton.astro";
           <path d="M3 7l6 -3l6 3l6 -3v13l-6 3l-6 -3l-6 3v-13"></path>
           <path d="M9 4v13"></path>
           <path d="M15 7v13"></path>
+        </svg>
+      </HeaderButton>
+      <HeaderButton href="/">
+        Hall of fame
+        <svg
+          slot="before"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M8 21l8 0"></path>
+          <path d="M12 17l0 4"></path>
+          <path d="M7 4l10 0"></path>
+          <path d="M17 4v8a5 5 0 0 1 -10 0v-8"></path>
+          <path d="M5 9m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+          <path d="M19 9m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
         </svg>
       </HeaderButton>
     </div>

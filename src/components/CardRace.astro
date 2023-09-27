@@ -1,0 +1,19 @@
+---
+import type { RaceResult } from "../interfaces/RaceResults";
+interface Props {
+  title: string;
+  raceResult: RaceResult;
+}
+
+const { title, raceResult } = Astro.props;
+---
+
+<section class="flex flex-col items-center w-4/12">
+  <div class="bg-gray-900 rounded-lg shadow-lg p-6">
+    <p class="text-lg">Circuit: {raceResult.grandPrix}</p>
+    <p class="text-lg">
+      Winner: {raceResult.winner.firstname}
+       &nbsp;{raceResult.winner.lastname}
+    </p>
+  </div>
+</section>
