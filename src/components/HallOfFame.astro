@@ -1,0 +1,51 @@
+---
+import {
+  type HallOfFameInterface,
+  type HallOfFame,
+} from "../interfaces/HallOfFame";
+
+const { hallOfFames }: HallOfFameInterface = await fetch(
+  "https://fia-formula-1-championship-statistics.p.rapidapi.com/api/drivers/hall-of-fame",
+  {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": "df163c1acdmsh067ecb6cddbce09p120c32jsn5325a2ac0db8",
+      "X-RapidAPI-Host": "fia-formula-1-championship-statistics.p.rapidapi.com",
+    },
+  }
+).then((response) => response.json());
+---
+
+<section
+  class="flex flex-col justify-center items-center my-8 max-w-7xl mx-auto"
+>
+  <h2 class="font-bold text-5xl mb-6">F1 ALL-TIME CHAMPIONS</h2>
+  <table class="bg-gray-900 max-w-7xl text-white w-full striped-table mb-8">
+    <thead>
+      <tr>
+        <th>Champions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Insert table rows here -->
+      {
+        hallOfFames &&
+          hallOfFames.map((driver: HallOfFame) => (
+            <tr class="h-10">
+              <td class="text-center">{driver.driver}</td>
+            </tr>
+          ))
+      }
+    </tbody>
+  </table>
+</section>
+
+<style>
+  .striped-table {
+    background-color: #282828;
+  }
+
+  .striped-table tr:nth-child(even) {
+    background-color: #4b4b4b;
+  }
+</style>

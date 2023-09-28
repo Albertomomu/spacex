@@ -1,12 +1,11 @@
 ---
 import {
-  type DriversStandingsInterface,
-  type DriverStanding,
-  type Driver,
-} from "../interfaces/DriversStandings";
+  type TeamsStandingsInterface,
+  type constructorStanding,
+} from "../interfaces/TeamsStandings";
 
-const { driverStandings }: DriversStandingsInterface = await fetch(
-  "https://fia-formula-1-championship-statistics.p.rapidapi.com/api/standings/drivers-standings?year=2023",
+const { constructorStandings }: TeamsStandingsInterface = await fetch(
+  "https://fia-formula-1-championship-statistics.p.rapidapi.com/api/standings/constructors-standings?year=2023",
   {
     method: "GET",
     headers: {
@@ -20,29 +19,24 @@ const { driverStandings }: DriversStandingsInterface = await fetch(
 <section
   class="flex flex-col justify-center items-center my-8 max-w-7xl mx-auto"
 >
-  <h2 class="font-bold text-5xl mb-6">2023 DRIVERS STANDINGS</h2>
+  <h2 class="font-bold text-5xl mb-6">2023 TEAMS STANDINGS</h2>
   <table class="bg-gray-900 max-w-7xl text-white w-full striped-table mb-8">
     <thead>
       <tr>
         <th>Position</th>
         <th>Team</th>
-        <th>Driver</th>
         <th>Points</th>
       </tr>
     </thead>
     <tbody>
       <!-- Insert table rows here -->
       {
-        driverStandings &&
-          driverStandings.map((driverStand: DriverStanding) => (
+        constructorStandings &&
+          constructorStandings.map((constructorStand: constructorStanding) => (
             <tr class="h-10">
-              <td class="text-center">{driverStand.pos}</td>
-              <td class="text-center">{driverStand.car}</td>
-              <td class="text-center">
-                {driverStand.driver.firstname}&nbsp;
-                {driverStand.driver.lastname}
-              </td>
-              <td class="text-center">{driverStand.pts}</td>
+              <td class="text-center">{constructorStand.pos}</td>
+              <td class="text-center">{constructorStand.team}</td>
+              <td class="text-center">{constructorStand.pts}</td>
             </tr>
           ))
       }
