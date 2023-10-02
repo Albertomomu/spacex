@@ -1,25 +1,20 @@
 ---
-import type { RaceResult } from "../interfaces/RaceResults";
+import type { Result } from "../interfaces/RaceResults";
 interface Props {
-  title: string;
-  raceResult: RaceResult;
+  raceResult: Result;
 }
 
-const { title, raceResult } = Astro.props;
+const { raceResult } = Astro.props;
 ---
 
 <div class="bg-gray-900 rounded-lg shadow-lg p-6">
-  <p class="text-lg"><b>Circuit:</b> &nbsp;{raceResult.grandPrix}</p>
+  <p class="text-lg"><b>Circuit:</b> &nbsp;{raceResult.track}</p>
   <p class="text-lg">
-    <b>Winner:</b>&nbsp;
-    {raceResult.winner.firstname}
-     &nbsp;{raceResult.winner.lastname}
+    <b>Country:</b>&nbsp;
+    {raceResult.country}
   </p>
   <p class="text-lg">
-    <b>Date:</b> &nbsp;{String(raceResult.date).split("T")[0]}
+    <b>Date:</b> &nbsp;{String(raceResult.start_date).split("T")[0]}
   </p>
-  <p class="text-lg"><b>Laps:</b> &nbsp;{raceResult.laps}</p>
-  <p class="text-lg">
-    <b>Time:</b> &nbsp;{String(raceResult.time).split(".")[0]}
-  </p>
+  <p class="text-lg"><b>Status:</b> &nbsp;{raceResult.status}</p>
 </div>

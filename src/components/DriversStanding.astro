@@ -1,17 +1,18 @@
 ---
 import {
   type DriversStandingsInterface,
-  type DriverStanding,
-  type Driver,
+  type Result,
 } from "../interfaces/DriversStandings";
 
-const { driverStandings }: DriversStandingsInterface = await fetch(
-  "https://fia-formula-1-championship-statistics.p.rapidapi.com/api/standings/drivers-standings?year=2023",
+const year = new Date().getFullYear();
+
+const { results }: DriversStandingsInterface = await fetch(
+  `https://f1-live-motorsport-data.p.rapidapi.com/drivers/standings/${year}`,
   {
     method: "GET",
     headers: {
       "X-RapidAPI-Key": "df163c1acdmsh067ecb6cddbce09p120c32jsn5325a2ac0db8",
-      "X-RapidAPI-Host": "fia-formula-1-championship-statistics.p.rapidapi.com",
+      "X-RapidAPI-Host": "f1-live-motorsport-data.p.rapidapi.com",
     },
   }
 ).then((response) => response.json());
@@ -33,16 +34,13 @@ const { driverStandings }: DriversStandingsInterface = await fetch(
     <tbody>
       <!-- Insert table rows here -->
       {
-        driverStandings &&
-          driverStandings.map((driverStand: DriverStanding) => (
+        results &&
+          results.map((driverStand: Result) => (
             <tr class="h-10">
-              <td class="text-center">{driverStand.pos}</td>
-              <td class="text-center">{driverStand.car}</td>
-              <td class="text-center">
-                {driverStand.driver.firstname}&nbsp;
-                {driverStand.driver.lastname}
-              </td>
-              <td class="text-center">{driverStand.pts}</td>
+              <td class="text-center">{driverStand.position}</td>
+              <td class="text-center">{driverStand.team_name}</td>
+              <td class="text-center">{driverStand.driver_name}</td>
+              <td class="text-center">{driverStand.points}</td>
             </tr>
           ))
       }

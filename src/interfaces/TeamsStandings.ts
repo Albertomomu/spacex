@@ -1,11 +1,26 @@
 export interface TeamsStandingsInterface {
-  title:           string;
-  constructorStandings: constructorStanding[];
-  httpStatusCode:  number;
+  meta:    Meta;
+  results: Result[];
 }
 
-export interface constructorStanding {
-  pos:  number;
-  team: string;
-  pts:  number;
+export interface Meta {
+  description: string;
+  fields:      Fields;
+  title:       string;
+}
+
+export interface Fields {
+  points:    string;
+  position:  string;
+  season:    string;
+  team_id:   string;
+  team_name: string;
+}
+
+export interface Result {
+  points:    number;
+  position:  number;
+  season:    number;
+  team_id:   number;
+  team_name: string;
 }

@@ -1,20 +1,20 @@
 ---
-import { type RaceResults, type RaceResult } from "../interfaces/RaceResults";
+import { type RacesInterface, type Result } from "../interfaces/RaceResults";
+
 import CardRace from "./CardRace.astro";
 
-const url =
-  "https://fia-formula-1-championship-statistics.p.rapidapi.com/api/standings/race-results?year=2023";
-const options = {
-  method: "GET",
-  headers: {
-    "X-RapidAPI-Key": "df163c1acdmsh067ecb6cddbce09p120c32jsn5325a2ac0db8",
-    "X-RapidAPI-Host": "fia-formula-1-championship-statistics.p.rapidapi.com",
-  },
-};
+const year = new Date().getFullYear();
 
-const response = await fetch(url, options);
-
-const { title, raceResults } = (await response.json()) as RaceResults;
+const { results }: RacesInterface = await fetch(
+  `https://f1-live-motorsport-data.p.rapidapi.com/races/${year}`,
+  {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": "df163c1acdmsh067ecb6cddbce09p120c32jsn5325a2ac0db8",
+      "X-RapidAPI-Host": "f1-live-motorsport-data.p.rapidapi.com",
+    },
+  }
+).then((response) => response.json());
 ---
 
 <section
@@ -23,8 +23,8 @@ const { title, raceResults } = (await response.json()) as RaceResults;
   <h2 class="font-bold text-5xl mb-6">2023 RACES</h2>
   <div class="grid grid-cols-3 gap-4 mb-4 w-full">
     {
-      raceResults.map((raceResulting: any) => (
-        <CardRace title={title} raceResult={raceResulting} />
+      results.map((raceResulting: Result) => (
+        <CardRace raceResult={raceResulting} />
       ))
     }
   </div>
